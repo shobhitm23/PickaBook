@@ -1,5 +1,5 @@
 import React from 'react';
-import Block from 'react-blocks';
+//import Block from 'react-blocks';
 import Background from '../images/books.jpg';
 
 const CenteredLayout = (props) => {
