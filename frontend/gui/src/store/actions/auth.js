@@ -75,7 +75,7 @@ export const authSignup = (
             password1,
             password2
         };
-        axios.post('htp://127.0.0.1:8000/rest-auth/registration/', user)
+        axios.post('http://127.0.0.1:8000/rest-auth/registration/', user)
         .then( res => {
             const user = {
                 token: res.data.key,
