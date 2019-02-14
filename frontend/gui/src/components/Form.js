@@ -16,7 +16,8 @@ const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
           this.props.onAuth(values.userName, values.password);
         }
       });
-//s      this.props.push("/myprofile/");
+      this.props.history.push("/updateprof/");
+      //      this.props.push("/myprofile/");
     }
   
     render() {

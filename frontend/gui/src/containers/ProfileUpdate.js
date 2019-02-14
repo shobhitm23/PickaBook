@@ -9,20 +9,31 @@ const { TextArea } = Input;
 const Option = Select.Option;
 
 
-class ProfileRegistrationForm extends React.Component {
+class ProfileUpdateForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { genre: "FA" };
+        this.state = {
+            FA: "Fantasy",
+            NF: "Non Fiction",
+            RO: "Romance",
+            TR: "Thriller",
+            MY: "Mystery",
+            BI: "Biography",
+            FI: "Fiction",
+            SF: "Science Fiction"
+
+        };
       }
 
     handleFormSubmit = (event, userID) => {
         event.preventDefault();
+        console.log(this.state)
 
         return axios.put(`http://127.0.0.1:8000/profile/update/${userID}`, {
-            first_name: event.target.elements.firstname.value,
-            last_name: event.target.elements.lastname.value,
-            bio: event.target.elements.bio.value,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            bio: this.state.bio,
             genre: this.state.genre
         })
         .then(res => console.log(res))
@@ -33,6 +44,23 @@ class ProfileRegistrationForm extends React.Component {
         this.setState({genre: value});
     }
 
+    handleTextChange = (keyName, value) => {
+        this.setState({[keyName]: value.target.value});
+
+    }
+
+    componentDidMount() {
+        axios.get(`http://127.0.0.1:8000/profile/${this.props.userid}`).then(res => {
+            this.setState({
+                first_name: res.data.first_name,
+                last_name: res.data.last_name,
+                bio: res.data.bio,
+                genre: res.data.genre,
+            })
+
+        })
+    }
+
     render() {
         return (
             <div>
@@ -41,19 +69,22 @@ class ProfileRegistrationForm extends React.Component {
                     this.props.userid
                 )}>
                     <FormItem label="First Name" >
-                        <Input name="firstname" placeholder="First name" />
+                        <Input name="firstname" placeholder={this.state.first_name} 
+                        onChange={(value => this.handleTextChange('first_name', value))} />
                     </FormItem>
 
                     <FormItem label="Last Name" >
-                        <Input name="lastname" placeholder="Last name" />
+                        <Input name="lastname" placeholder={this.state.last_name} 
+                        onChange={(value => this.handleTextChange('last_name', value))}/>
                     </FormItem>
                     
                     <FormItem label = "Bio" >
-                        <TextArea name="bio" placeholder="About Me!" autosize={{minRows: 2}} />
+                        <TextArea name="bio" placeholder={this.state.bio} autosize={{minRows: 2}}
+                        onChange={(value => this.handleTextChange('bio', value))} />
                     </FormItem>
 
                     <FormItem label = "Genre" >
-                        <Select name="genre" defaultValue="FA" 
+                        <Select name="genre" placeholder={this.state[this.state.genre]} defaultValue={this.state.genre} 
                         onChange={(value) => this.handleGenreChange(value)}>
                             <Option value="FA">Fantasy</Option>
                             <Option value="RO">Romance</Option>
@@ -84,4 +115,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(ProfileRegistrationForm);
+export default connect(mapStateToProps)(ProfileUpdateForm);
