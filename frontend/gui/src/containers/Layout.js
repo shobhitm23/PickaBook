@@ -3,7 +3,7 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
-
+import CustomHeader from './Header';
 
 const { Header, Content, Footer } = Layout;
 
@@ -12,6 +12,8 @@ class CustomLayout extends React.Component {
       return (
         <Layout className="layout">
         
+        <CustomHeader />
+{/*
         <Header>
           <div className="logo" />
           <Menu
@@ -39,7 +41,8 @@ class CustomLayout extends React.Component {
             </Menu.Item>
           </Menu>
         </Header>
-
+*/}
+        
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
