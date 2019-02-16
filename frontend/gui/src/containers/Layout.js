@@ -54,7 +54,7 @@ class CustomLayout extends React.Component {
         </Content>
         
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
+          PickaBook: a CS 307 Project | Created by Myeongsu Kim, Logesh Roshan, Piyush Juneja, Shobhit Makhija
         </Footer>
       
       </Layout>
