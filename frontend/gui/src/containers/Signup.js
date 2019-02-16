@@ -5,7 +5,6 @@ import * as actions from '../store/actions/auth';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
   
-  
   class RegistrationForm extends React.Component {
     state = {
       confirmDirty: false,
@@ -23,6 +22,7 @@ import { NavLink } from 'react-router-dom';
               values.confirm
             );
           console.log('Received values of form: ', values);
+          this.props.history.push('/newprof/');
         }
 //        this.props.history.push('/');
       });
