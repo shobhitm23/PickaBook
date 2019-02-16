@@ -15,7 +15,18 @@ class Book(models.Model):
     publication_date = models.DateField(null=True)
     
     # genre
-    genre = models.CharField(max_length=50, default = '')
+    GENRES = (
+        ('FA', 'Fantasy'),
+        ('RO', 'Romance'),
+        ('TR', 'Thriller'),
+        ('MY', 'Mystery'),
+        ('BI', 'Biography'),
+        ('FI', 'Fiction'),
+        ('NF', 'Non Fiction'),
+        ('SF', 'Science Fiction'),
+    )
+
+    genre = models.CharField(max_length=2, choices = GENRES, default='FA')
 
     # rating
     rating = models.FloatField(default=0.0)
