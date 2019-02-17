@@ -29,6 +29,10 @@ class CustomHeader extends React.Component {
                <Button variant="outline-success">Search</Button>
             </Form>
             
+            <NavDropdown title="Filter" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Author</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">Book</NavDropdown.Item>    
+            </NavDropdown>
             
 
             </Navbar.Collapse>

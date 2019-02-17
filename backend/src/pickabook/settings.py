@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'books',
     'users',
+    'reviews',
 
     'django.contrib.sites',
     'corsheaders',
