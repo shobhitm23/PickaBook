@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('library/', include('books.api.urls')),
     path('profile/', include('users.api.urls')),
-    path('bookreview/', include('reviews.api.urls'))
+    path('bookreview/', include('reviews.api.urls')),
+    path('qanswer/', include('qanswers.api.urls'))
 ]
 
