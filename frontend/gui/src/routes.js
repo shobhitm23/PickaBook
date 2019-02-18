@@ -6,6 +6,7 @@ import CenteredLayout from './containers/LoginLayout';
 import Signup from './containers/Signup';
 import BookList from './containers/BookList';
 import BookDetail from './containers/BookDetailView';
+import ProfilePage from './components/ProfilePage';
 import ProfileRegister from './containers/ProfileRegister';
 import ProfileUpdate from './containers/ProfileUpdate';
 
@@ -31,7 +32,8 @@ const BaseRouter = (props) => (
 
         <AppRoute exact path='/newprof/' layout={(props) => <CustomLayout {...props} />} component={ProfileRegister}/>
         <AppRoute exact path='/updateprof/' layout={(props) => <CustomLayout {...props} />} component={ProfileUpdate}/>
-        
+        <AppRoute exact path='/profile/' layout={(props) => <CustomLayout {...props} />} component={ProfilePage}/>
+
       </Switch>
     </BrowserRouter>
     </div>

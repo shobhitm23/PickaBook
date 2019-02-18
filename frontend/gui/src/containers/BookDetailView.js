@@ -7,10 +7,6 @@ const gridStyle = {
   };
 
 class BookDetail extends React.Component {
-    
-    state = {
-        book: {}
-    }
 
     constructor(props) {
         super(props);
@@ -26,8 +22,9 @@ class BookDetail extends React.Component {
         };
     }  
 
-    fetchBooks = () => {
+    componentDidMount = () => {
         const bookID = this.props.match.params.bookID;
+        this._isMounted=true;
         axios.get(`http://127.0.0.1:8000/library/booklist/${bookID}`).then(res => {
           this.setState({
             // book: res.data
@@ -41,11 +38,13 @@ class BookDetail extends React.Component {
             synopsis: res.data.synopsis
 
           });
-        });
+        })
+        .catch(error => console.log(error));
     }  
 
-    componentDidMount() {
-        this.fetchBooks();
+    componentWillUnmount(){
+        this._isMounted = false;
+        console.log("Unmounting");
     }
 
     render() {
@@ -53,7 +52,9 @@ class BookDetail extends React.Component {
                 <div>
                     <Row gutter={20} type="flex" justify="center">
                         <Col span={6}>
-                            <Card>
+                            <Card bodyStyle={{
+                                padding: 0
+                            }}>
                                 <img src={this.state.image_url} style={{    
                                 }}
                                 width="100%" height="100%" >
@@ -62,7 +63,11 @@ class BookDetail extends React.Component {
                         </Col>
                         
                         <Col span={16}>
-                            <Card title={this.state.title}>
+                            <Card title={this.state.title} headStyle={{
+                                fontSize: 20,
+                                fontStyle: 'italic',
+                                fontFamily: 'Georgia'
+                            }}>
                                 <p>
                                     <b><i>Author: </i></b> 
                                     {this.state.author_name}
@@ -103,6 +108,16 @@ class BookDetail extends React.Component {
                     </Row>
                 </div>
         )
+    }
+}
+
+class Title extends React.Component {
+    render() {
+        return (
+            <h2>
+                Title
+            </h2>
+        );
     }
 }
 

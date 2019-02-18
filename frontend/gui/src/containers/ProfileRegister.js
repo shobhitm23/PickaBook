@@ -19,7 +19,7 @@ class ProfileRegistrationForm extends React.Component {
     handleFormSubmit = (event, userID) => {
         event.preventDefault();
 
-        return axios.put(`http://127.0.0.1:8000/profile/update/${userID}`, {
+        axios.put(`http://127.0.0.1:8000/profile/update/${userID}`, {
             first_name: event.target.elements.firstname.value,
             last_name: event.target.elements.lastname.value,
             bio: event.target.elements.bio.value,
@@ -27,6 +27,7 @@ class ProfileRegistrationForm extends React.Component {
         })
         .then(res => console.log(res))
         .catch(error => console.log(error));
+        this.props.history.push('/profile');
     }
 
     handleGenreChange = (value) => {
