@@ -16,6 +16,10 @@ class BookDetailView(RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
+class BookSearchView(RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    lookup_field = 'title'
 
 class BookCreateView(CreateAPIView):
     queryset = Book.objects.all()

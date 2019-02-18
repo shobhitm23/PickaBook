@@ -12,7 +12,7 @@ class CustomLayout extends React.Component {
       return (
         <Layout className="layout">
         
-        <CustomHeader />
+        <CustomHeader history={this.props.history} />
 {/*
         <Header>
           <div className="logo" />

@@ -54,7 +54,9 @@ class BookDetail extends React.Component {
                     <Row gutter={20} type="flex" justify="center">
                         <Col span={6}>
                             <Card>
-                                <img src={this.state.image_url} width="233" height="278" >
+                                <img src={this.state.image_url} style={{    
+                                }}
+                                width="100%" height="100%" >
                                 </img>
                             </Card>
                         </Col>
