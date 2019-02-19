@@ -27,6 +27,7 @@ const BaseRouter = (props) => (
         <AppRoute exact path='/login/' layout={(props) => <CenteredLayout {...props} />} component={Login}/>
         <AppRoute exact path='/signup/' layout={(props) => <CenteredLayout {...props} />} component={Signup}/>
 
+
         <AppRoute exact path='/booklist/' layout={(props) => <CustomLayout {...props} />} component={BookList}/>
         <AppRoute exact path='/booklist/:bookID/' layout={(props) => <CustomLayout {...props} />} component={BookDetail}/>
 

@@ -5,6 +5,8 @@ import {
 import * as actions from '../store/actions/auth';
 import {connect} from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import Logo from '../images/logo.png';
+import './temp.css';
 
 const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
   
@@ -28,7 +30,20 @@ const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
       }
       const { getFieldDecorator } = this.props.form;
       return (
-        <div>
+        <div className="parent" style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          borderRadius: 10,
+          backgroundColor: 'rgba(241, 101, 86, 0.6)', 
+          
+      }} >
+
+          <img src={Logo} alt="logo" style={{
+            width: 250,
+            height: 93
+          }} />
           {errorMessage}
           {
             this.props.loading ? 
@@ -37,39 +52,46 @@ const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
             :
 
             <Form onSubmit={this.handleSubmit} className="login-form">
-              <p> Username </p>
-              <Form.Item style={{
-                  width: 250
+
+              <Form.Item className='signForm' style={{
+                  width: 250,
+                  
               }}>
                 {getFieldDecorator('userName', {
                   rules: [{ required: true, message: 'Please input your username!' }],
                 })(
-                  <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                  <Input 
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.8)' }} />} placeholder="Username"
+                   />
                 )}
               </Form.Item>
-              <p> Password </p>
-              <Form.Item style={{
+              <Form.Item className='signForm' style={{
                   width: 250
               }}>
                 {getFieldDecorator('password', {
                   rules: [{ required: true, message: 'Please input your Password!' }],
                 })(
-                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.8)' }} />} type="password" placeholder="Password" />
                 )}
               </Form.Item>
               <Form.Item>
                 
-                <Button type="primary" htmlType="submit" className="login-form-button">
+                <Button type="primary" htmlType="submit" className="signForm"
+                 style={{
+                  marginLeft: 31,
+                  width: '75%'
+                }}>
                   Log in
                 </Button>
                 
-                <NavLink style={{marginLeft: 72}} to='/forgot/'>
+                <br></br>
+                <NavLink style={{marginLeft: 68, fontSize: 16}} to='/forgot/'>
                   Forgot password
                 </NavLink>
                 <br></br>
-                Or 
-                <NavLink to="/signup/" style={{marginLeft: 10}} >
-                register now!
+
+                <NavLink to="/signup/" style={{marginLeft: 78, color: '#25507d', fontSize: 16}} >
+                Register Now!
                 </NavLink>
               </Form.Item>
             </Form>
