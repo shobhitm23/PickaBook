@@ -2,6 +2,9 @@ import React from 'react';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button, Modal } from 'react-bootstrap';
 import { Select } from 'antd';
 import axios from 'axios';
+import * as actions from '../store/actions/auth';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -64,6 +67,7 @@ class CustomHeader extends React.Component {
     }
 
     render() {
+        console.log(this.props.isAuthenticated)
         return (
             <div>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
@@ -73,12 +77,18 @@ class CustomHeader extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
             <Nav.Link href="#home">Explore</Nav.Link>
-            <Nav.Link href="#link">Profile</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown title="Profile" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+                <NavDropdown.Item href="/updateprof">Update Profile</NavDropdown.Item>
             </NavDropdown>
+            
+            {
+                this.props.isAuthenticated ? 
+                <Nav.Link onClick={this.props.logout} href="/login">Logout</Nav.Link>
+                :
+                <Nav.Link href="/login">Login</Nav.Link>
+            }
+
             </Nav>
             <Form inline onSubmit={(event) => this.handleFormSubmit(event)}>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" name="tgtname" />
@@ -113,4 +123,10 @@ class CustomHeader extends React.Component {
     }
 }
 
-export default CustomHeader;
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(actions.logout())
+    }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(CustomHeader));

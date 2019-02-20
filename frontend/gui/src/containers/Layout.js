@@ -9,10 +9,11 @@ const { Header, Content, Footer } = Layout;
 
 class CustomLayout extends React.Component {
   render() {
+    console.log(this.props);
       return (
         <Layout className="layout">
         
-        <CustomHeader history={this.props.history} />
+        <CustomHeader history={this.props.history} isAuthenticated={this.props.isAuthenticated}/>
 {/*
         <Header>
           <div className="logo" />

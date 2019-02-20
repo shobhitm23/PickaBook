@@ -20,7 +20,7 @@ class Author(models.Model):
 
     #genre = models.CharField(max_length=20, default="FA")
 
-    review = models.DecimalField(max_digits=4,decimal_places=2, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
+    review = models.DecimalField(max_digits=4,decimal_places=2, validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0.0)
 
     GENRES = (
         ('FA', 'Fantasy'),

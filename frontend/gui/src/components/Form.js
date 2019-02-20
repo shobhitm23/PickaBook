@@ -22,6 +22,7 @@ const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
     }
   
     render() {
+      console.log(this.props.isAuthenticated)
       let errorMessage = null;
       if(this.props.error) {
         errorMessage = (

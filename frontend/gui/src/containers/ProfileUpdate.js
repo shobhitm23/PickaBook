@@ -36,7 +36,9 @@ class ProfileUpdateForm extends React.Component {
             bio: this.state.bio,
             genre: this.state.genre
         })
-        .then(res => console.log(res))
+        .then(res => {
+            this.props.history.push('/profile');
+        })
         .catch(error => console.log(error));
     }
 

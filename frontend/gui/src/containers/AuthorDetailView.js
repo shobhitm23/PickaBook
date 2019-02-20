@@ -6,7 +6,7 @@ const gridStyle = {
     textAlign: 'center',
   };
 
-class BookDetail extends React.Component {
+class AuthorDetail extends React.Component {
 
     constructor(props) {
         super(props);
@@ -23,33 +23,22 @@ class BookDetail extends React.Component {
     }  
 
     componentDidMount = () => {
-        const bookID = this.props.match.params.bookID;
+        const authID = this.props.match.params.authID;
         this._isMounted=true;
-        axios.get(`http://127.0.0.1:8000/library/booklist/${bookID}`).then(res => {
+        axios.get(`http://127.0.0.1:8000/authors/${authID}`).then(res => {
           this.setState({
             // book: res.data
-            title: res.data.title,
-            author_name: res.data.author_name,
-            publication_date: res.data.publication_date,
+            title: res.data.name,
+            birthdate: res.data.birthdate,
+            numFollowers: res.data.numFollowers,
             image_url: res.data.image_url,
             genre: this.state[res.data.genre],
-            rating: res.data.rating,
-            number_of_reviews: res.data.number_of_reviews,
-            synopsis: res.data.synopsis
+            rating: res.data.review,
+            number_of_reviews: res.data.review_count,
+            synopsis: res.data.bio
           });
-
-          axios.get(`http://127.0.0.1:8000/authors/view/${this.state.author_name}`)
-          .then(res => {
-              this.setState({
-                  authID: res.data.pk,
-              });
-          })
-          .catch(error => console.log(error));
-
         })
         .catch(error => console.log(error));
-
-        
     }  
 
     componentWillUnmount(){
@@ -79,13 +68,13 @@ class BookDetail extends React.Component {
                                 fontFamily: 'Georgia'
                             }}>
                                 <p>
-                                    <b><i>Author: </i></b> 
-                                    <a href={'/authors/'+this.state.authID} > {this.state.author_name} </a>
+                                    <b><i>Birthdate: </i></b> 
+                                    {this.state.birthdate}
                                 </p>
                                 
                                 <p>
-                                    <b><i>Date of publication: </i></b> 
-                                    {this.state.publication_date}
+                                    <b><i>Number of Followers: </i></b> 
+                                    {this.state.numFollowers}
                                 </p>
                                 
                                 <p>
@@ -131,4 +120,4 @@ class Title extends React.Component {
     }
 }
 
-export default BookDetail;
+export default AuthorDetail;

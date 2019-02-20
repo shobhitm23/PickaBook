@@ -11,7 +11,12 @@ from .serializers import AuthorSerializer
 #    queryset = Author.objects.all()
 #    serializer_class = AuthorSerializer
 
-class AuthorDetailView(RetrieveAPIView):
+class AuthorSearchView(RetrieveAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     lookup_field = 'name'
+
+class AuthorDetailView(RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
