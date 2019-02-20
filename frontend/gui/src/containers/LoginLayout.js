@@ -17,15 +17,7 @@ const CenteredLayout = (props) => {
                 left: '0',
                 top: '0',
             }} />
-            <div style={{
-                position: 'absolute',
-                left: '50%',
-                top: '50%',
-                transform: 'translate(-50%, -50%)',
-                borderRadius: 10,
-                backgroundColor: '#D3D3D3', 
-                
-            }} >
+            <div >
             
                 {props.children}
             
