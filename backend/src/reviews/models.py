@@ -13,7 +13,6 @@ class BookReview(models.Model):
     content = models.TextField(max_length=500, blank=False)
     rating = models.FloatField(default=0.0)
 
-
     creation_date= models.DateField(default=datetime.date.today)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Card, Row, Col } from "antd";
+import { Card, Row, Col, List, message, Avatar, Spin } from "antd";
 
 const gridStyle = {
     textAlign: 'center',
@@ -36,7 +36,6 @@ class BookDetail extends React.Component {
             rating: res.data.rating,
             number_of_reviews: res.data.number_of_reviews,
             synopsis: res.data.synopsis
-
           });
         })
         .catch(error => console.log(error));
