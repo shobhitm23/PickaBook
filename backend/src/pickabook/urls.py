@@ -21,9 +21,9 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('admin/', admin.site.urls),
+    path('authors/', include('authors.api.urls')),
     path('library/', include('books.api.urls')),
     path('profile/', include('users.api.urls')),
     path('bookreview/', include('reviews.api.urls')),
     path('qanswer/', include('qanswers.api.urls'))
 ]
-

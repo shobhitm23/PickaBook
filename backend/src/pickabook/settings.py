@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'reviews',
     'qanswers',
+    'authors',
 
     'django.contrib.sites',
     'corsheaders',
