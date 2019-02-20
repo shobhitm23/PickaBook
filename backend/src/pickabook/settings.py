@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'users',
     'reviews',
     'qanswers',
+    'authors',
 
     'django.contrib.sites',
     'corsheaders',
@@ -158,8 +159,11 @@ ACCOUNT_AUTHENTICATION_METHOD= 'username'
 REST_AUTH_SERIALIZERS = {
     'TOKEN_SERIALIZER': 'users.serializers.TokenSerializer'
 }
+<<<<<<< HEAD
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #EMAIL_HOST = 'localhost'
 #EMAIL_PORT = 1025
+=======
+>>>>>>> ba5ff62367a90d6b938611a923b9a08cfb3e1f23
