@@ -21,6 +21,10 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  isLoading: PropType.bool.isRequired,
+};
+
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.token !== null
