@@ -4,12 +4,13 @@ from .views import (
     QuestionListView,
     QuestionCreateView,
     AnswerListView,
-    AnswerCreateView
+    AnswerCreateView,
+    AnswerBookListView
 )
 
 urlpatterns = [
     path('question/<fk>', QuestionListView.as_view()),
     path('question/create/', QuestionCreateView.as_view()),
-    path('answer/<fk>', AnswerListView.as_view()),
+    path('answer/<fk>', AnswerBookListView.as_view()),
     path('answer/create/', AnswerCreateView.as_view())
 ]

@@ -41,3 +41,10 @@ class AnswerListView(ListAPIView):
 
     def get_queryset(self):
         return Answer.objects.filter(question=self.kwargs['fk'])
+
+class AnswerBookListView(ListAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+
+    def get_queryset(self):
+        return Answer.objects.filter(book=self.kwargs['fk']).order_by('question')

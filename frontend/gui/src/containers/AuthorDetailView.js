@@ -18,7 +18,8 @@ class AuthorDetail extends React.Component {
             MY: "Mystery",
             BI: "Biography",
             FI: "Fiction",
-            SF: "Science Fiction"
+            SF: "Science Fiction",
+            books: []
         };
     }  
 
@@ -37,6 +38,13 @@ class AuthorDetail extends React.Component {
             number_of_reviews: res.data.review_count,
             synopsis: res.data.bio
           });
+
+          axios.get(`http://127.0.0.1:8000/library/authorbooks/${res.data.name}`).then(ares => {
+              this.setState({
+                  books: ares.data
+              });
+          })
+          .catch(error => console.log(error));
         })
         .catch(error => console.log(error));
     }  
@@ -105,6 +113,28 @@ class AuthorDetail extends React.Component {
                             </Card>
                         </Col>
                     </Row>
+
+                    <List
+                        grid={{ gutter: 16, column: 4 }}
+                        dataSource={this.state.books}
+                        renderItem={item => (
+                        <List.Item>
+
+
+                            <Card
+                                hoverable
+                                style={{ width: 240 }}
+                                cover={<img alt={item.title} src={item.image_url} />}
+                            >
+                                <Card.Meta
+                                title={<a href={'/booklist/'+item.pk}><b>{item.title}</b></a>}
+                                
+                                />
+                            </Card>
+                        </List.Item>
+                        )}
+                    />
+
                 </div>
         )
     }

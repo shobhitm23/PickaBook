@@ -24,6 +24,13 @@ class BookSearchView(RetrieveAPIView):
     serializer_class = BookSerializer
     lookup_field = 'title'
 
+class BookAuthorView(ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    def get_queryset(self):
+        return Book.objects.filter(author_name=self.kwargs['author'])
+
 class BookCreateView(CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
