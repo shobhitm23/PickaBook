@@ -12,7 +12,7 @@ def create_book(title, author_name):
 # Model tests for books
 class BookModelTest(TestCase):
 
-    def test_bookCreation(self):
+    def test_book_creation(self):
 
         book_entry = create_book(title="t", author_name="a")
         self.assertTrue(isinstance(book_entry, Book))
@@ -22,7 +22,7 @@ class BookModelTest(TestCase):
 # List view tests for books
 class BookListTest(TestCase):
 
-    def test_bookListView(self):
+    def test_book_list_view(self):
 
         b1 = create_book(title="t1", author_name="a1")
         b2 = create_book(title="t2", author_name="a2")
