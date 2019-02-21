@@ -9,8 +9,8 @@ from .views import (
 )
 
 urlpatterns = [
-    path('question/<fk>', QuestionListView.as_view()),
+    path('question/<fk>', QuestionListView.as_view(), name="questionlist"),
     path('question/create/', QuestionCreateView.as_view()),
-    path('answer/<fk>', AnswerBookListView.as_view()),
+    path('answer/<fk>', AnswerBookListView.as_view(), name="answerlist"),
     path('answer/create/', AnswerCreateView.as_view())
 ]

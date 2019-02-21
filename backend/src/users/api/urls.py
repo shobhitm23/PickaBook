@@ -13,7 +13,7 @@ from django.contrib.auth.views import (
 )
 
 urlpatterns = [
-    path('<user__pk>', ProfileDetailView.as_view()),
+    path('<user__pk>', ProfileDetailView.as_view(), name='profiledetail'),
     path('update/<user__pk>', ProfileUpdateView.as_view()),
     path('resetpw/', PasswordResetView.as_view(), name='reset_password'),
     path('resetpw/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
