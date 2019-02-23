@@ -39,8 +39,7 @@ def test(csvPath):
 
 
     for i in range(0, len(titleL)):
-            if( Book.objects.filter(title=titleL[i]).count() == 0):
-                Book(title = titleL[i], author_name = author_nameL[i], publication_date = publication_dateL[i].split(' ')[0], genre = genreL[i], rating = ratingL[i], image_url = image_urlL[i], synopsis = synopsisL[i]).save()
+            Book(title = titleL[i], author_name = author_nameL[i], publication_date = publication_dateL[i].split(' ')[i], genre = genreL[i], rating = ratingL[i], image_url = image_urlL[i], synopsis = synopsisL[i]).save()
 
 
 
