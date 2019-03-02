@@ -4,6 +4,7 @@ import { Card, Row, Col, List, message, Avatar, Spin } from "antd";
 import reqwest from 'reqwest';
 import InfiniteScroll from 'react-infinite-scroller';
 import QAnswer from '../components/QAnswer';
+import ReviewForm from '../forms/ReviewForm';
 
 const gridStyle = {
     textAlign: 'center',
@@ -181,6 +182,14 @@ class BookDetail extends React.Component {
                                 </List>
                                 </InfiniteScroll>
 
+                            </Card>
+                        </Col>
+                    </Row>
+
+                    <Row gutter={20} type="flex">
+                        <Col span={22}>
+                            <Card title="Add A Review">
+                                <ReviewForm bookID={this.props.match.params.bookID} />
                             </Card>
                         </Col>
                     </Row>
