@@ -1,7 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import random
+from datetime import datetime as dt
+import os
 # import re
+
 
 def tag_remove(HTML_string):
     
@@ -22,12 +26,17 @@ def getPublishedDate(HTML_string):
     return datePublished
 
 def parseInfo(HTML_string):
+    
+    genreList = ['FA','RO','TR','MY','BI','FI','NF', 'SF']
+    
+    
+    
     clean_HTML = HTML_string.split('\"')
     clean_HTML = clean_HTML[1].split(',')
     
     author = clean_HTML[0]
     title = clean_HTML[1][1:]
-    genre = clean_HTML[4].replace(' ', '')
+    genre = genreList[random.randint(0,7)]
     
 #     print(author)
 #     print(title)
@@ -46,6 +55,37 @@ def getDetail(link):
     if(datePublished == -1):
         return - 1
     
+    datePublished = str(datePublished).split(' ')
+
+#    if "Jan" in datePublished[0]:
+#        datePublished[0] = "01"
+#    if "Fe" in datePublished[0] :
+#        datePublished[0] = "02"
+##    else if "Mar" in datePublished[0] :
+##        datePublished[0] = "03"
+##    else if "Ap" in datePublished[0] :
+##        datePublished[0] = "04"
+##    else if "May" in datePublished[0] :
+##        datePublished[0] = "05"
+##    else if "Jun" in datePublished[0] :
+##        datePublished[0] = "06"
+##    else if "July" in datePublished[0] :
+##        datePublished[0] = "07"
+##    else if "Aug" in datePublished[0] :
+##        datePublished[0] = "08"
+##    else if "Sep" in datePublished[0] :
+##        datePublished[0] = "09"
+##    else if "Oct" in datePublished[0] :
+##        datePublished[0] = "10"
+##    else if "Nov" in datePublished[0] :
+##        datePublished[0] = "11"
+##    else:
+##        datePublished[0] = "12"
+
+#    print(datePublished)
+
+#    datePublished = dt(int(datePublished[1]), int(datePublished[0]), 1, 0)
+
     return (title, author, genre, overview, datePublished)
 
 def run():
@@ -85,15 +125,19 @@ def run():
         Books["Image"].append(img)
         Books["PbDate"].append(detail[4])
         Books["Overview"].append(detail[3])
-        Books["Rating"].append(0)
+        Books["Rating"].append(0.0)
         
         print("------------------------------------------------------")
 
+    
+#    BlogData(title = Books["Title"], author_name = Books["Author"], publication_date = Books["PbDate"], genre = Books["Genre"], rating = Books["Rating"], image_url = Books["Image"], synopsis = Books["Overview"]).save()
 
     df = pd.DataFrame.from_dict(Books, orient="index")
     df.to_csv("Books.csv")
 
 if __name__ == '__main__':
     print("started!")
+#    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "websaver.settings")
+#    django.setup()
     run()
         
