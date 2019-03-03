@@ -13,8 +13,21 @@ class ProfileRegistrationForm extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { genre: "FA" };
+        this.state = { 
+            genre: "FA",
+            selectedFile: null
+        };
       }
+
+    handleFileSelect = event => {
+        this.setState({
+            selectedFile: event.target.files[0]
+        })
+    }
+
+    handleFileUpload = () => {
+
+    }
 
     handleFormSubmit = (event, userID) => {
         event.preventDefault();
@@ -65,6 +78,12 @@ class ProfileRegistrationForm extends React.Component {
                             <Option value="NF">Non Fiction</Option>
                             <Option value="SF">Science Fiction</Option>
                         </Select>    
+                    </FormItem>
+                    
+                    <FormItem label = "Avatar">
+                        <Button onClick={this.handleFileUpload}>
+                            Upload image
+                        </Button>
                     </FormItem>
 
                     <FormItem>
