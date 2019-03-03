@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Avatar } from 'antd';
 import { connect } from "react-redux";
 
 import axios from 'axios';
@@ -25,18 +25,35 @@ class ProfileRegistrationForm extends React.Component {
         })
     }
 
-    handleFileUpload = () => {
+    // handleFileUpload = () => {
+    //     const data = new FormData()
+    //     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
 
-    }
+    //     axios.post('http://localhost:8000/media/user_avatar/', data, {
+    //         onUploadProgress: ProgressEvent => {
+    //             this.setState({
+    //                 loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+    //             })
+    //         },
+    //     })
+    //     .then(res => {
+    //         console.log(res.statusText)
+    //     })
+
+    // }
 
     handleFormSubmit = (event, userID) => {
         event.preventDefault();
+
+        const img_data = new FormData()
+        img_data.append('file', this.state.selectedFile, this.state.selectedFile.name)
 
         axios.put(`http://127.0.0.1:8000/profile/update/${userID}`, {
             first_name: event.target.elements.firstname.value,
             last_name: event.target.elements.lastname.value,
             bio: event.target.elements.bio.value,
-            genre: this.state.genre
+            genre: this.state.genre,
+            avatar: this.state.img_data
         })
         .then(res => console.log(res))
         .catch(error => console.log(error));
@@ -81,9 +98,11 @@ class ProfileRegistrationForm extends React.Component {
                     </FormItem>
                     
                     <FormItem label = "Avatar">
-                        <Button onClick={this.handleFileUpload}>
-                            Upload image
-                        </Button>
+                        <input 
+                         type="file" 
+                         name="" 
+                         id="" 
+                         onChange={this.handleFileSelect} />
                     </FormItem>
 
                     <FormItem>
