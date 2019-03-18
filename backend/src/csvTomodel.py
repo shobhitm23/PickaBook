@@ -6,6 +6,8 @@ import django
 django.setup()
 from books.models import Book
 
+#This code update database from csv file which contains book information (pared from webcrwler)
+
 
 def test(csvPath):
     

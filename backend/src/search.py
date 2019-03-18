@@ -7,7 +7,7 @@ from books.models import Book
 
 #def test(csvPath):
 
-
+# Trim parsed keyword so that it contains only required information.
 def preProcess_Keywords(keyWords):
     
     keyWords = keyWords.lower()
@@ -27,7 +27,7 @@ def preProcess_Keywords(keyWords):
 
 
 def search(keyWords):
-    
+    #    get books info from our database.
     bookInfo = Book.objects.values()
     
     title = []
@@ -35,13 +35,13 @@ def search(keyWords):
     
     cnt = 0
     for b in bookInfo:
-        #         print(bookInfo[key])
+    # To avoid getting frame inforamtaion (first element is fram info)
         if(cnt > 0):
             title.append(b["title"])
             author_name.append(b["author_name"])
         cnt += 1
 
-    
+    #    trim keyword before parse required information.
     trimedKeys = preProcess_Keywords(keyWords)
     keyWords = keyWords.lower()
     
@@ -50,7 +50,7 @@ def search(keyWords):
 
     resultTitle = []
     resultAuthor = []
-
+#    for searching robustness, change input/trimed data to lower cases
     for i in range(0, len(title)):
         matchCnt = 0
         for j in range(0, len(trimedKeys)):
@@ -65,7 +65,7 @@ def search(keyWords):
             resultTitle.append((bookInfo[i], matchCnt))
 
 
-    
+#    for searching robustness, change input/trimed data to lower cases
     for i in range(0, len(author_name)):
         matchCnt = 0
         for j in range(0, len(trimedKeys)):
@@ -80,10 +80,12 @@ def search(keyWords):
             resultAuthor.append((bookInfo[i], matchCnt))
 
 
+# Sorting to whoe high match rate result show first
     resultTitle.sort(key=lambda x: x[1], reverse=True)
     resultTitle.sort(key=lambda x: x[1], reverse=True)
 
-    
+
+#   If there are matched result print out Matched title and author.
     if((len(resultTitle) + len(resultAuthor)) == 0):
         print("Not Found!")
     else:
