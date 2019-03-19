@@ -36,7 +36,7 @@ class ProfileRegistrationForm extends React.Component {
             last_name: event.target.elements.lastname.value,
             bio: event.target.elements.bio.value,
             genre: this.state.genre,
-            avatar: event.target.elements.avatar
+            avatar: event.target.files[0]
             // avatar: this.state.img_data
         })
         .then(res => console.log(res))

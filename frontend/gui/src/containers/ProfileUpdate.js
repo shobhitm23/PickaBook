@@ -44,7 +44,8 @@ class ProfileUpdateForm extends React.Component {
             last_name: this.state.last_name,
             bio: this.state.bio,
             genre: this.state.genre,
-            avatar: this.state.img_data
+            // avatar: this.state.img_data
+            avatar: this.state.selectedFile
         })
         .then(res => {
             this.props.history.push('/profile');
