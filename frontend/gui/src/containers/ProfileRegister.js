@@ -23,24 +23,7 @@ class ProfileRegistrationForm extends React.Component {
         this.setState({
             selectedFile: event.target.files[0]
         })
-    }
-
-    // handleFileUpload = () => {
-    //     const data = new FormData()
-    //     data.append('file', this.state.selectedFile, this.state.selectedFile.name)
-
-    //     axios.post('http://localhost:8000/media/user_avatar/', data, {
-    //         onUploadProgress: ProgressEvent => {
-    //             this.setState({
-    //                 loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-    //             })
-    //         },
-    //     })
-    //     .then(res => {
-    //         console.log(res.statusText)
-    //     })
-
-    // }
+    }  
 
     handleFormSubmit = (event, userID) => {
         event.preventDefault();
@@ -53,7 +36,8 @@ class ProfileRegistrationForm extends React.Component {
             last_name: event.target.elements.lastname.value,
             bio: event.target.elements.bio.value,
             genre: this.state.genre,
-            avatar: this.state.img_data
+            avatar: event.target.elements.avatar
+            // avatar: this.state.img_data
         })
         .then(res => console.log(res))
         .catch(error => console.log(error));

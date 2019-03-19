@@ -40,6 +40,7 @@ class ProfilePage extends React.Component {
                 bio: res.data.bio,
                 genre: res.data.genre,
                 avatar: res.data.avatar
+                //avatar: this.state.image_url
             });
             localStorage.setItem("profID", res.data.pk);
             console.log(localStorage.getItem("profID"));

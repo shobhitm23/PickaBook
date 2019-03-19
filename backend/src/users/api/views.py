@@ -12,6 +12,10 @@ from .serializers import (
     ProfileUpdateSerializer
 )
 
+from rest_framework.exceptions import ParseError
+from rest_framework.parsers import FileUploadParser
+
+
 # Use to retrieve based on multiple filters
 # class MultipleFieldLookupMixin(object):
 #     """
@@ -38,3 +42,6 @@ class ProfileUpdateView(UpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileUpdateSerializer
     lookup_field = 'user__pk'
+    permission_classes = (permissions.AllowAny,)
+    parser_class = (FileUploadParser)
+    # parser_classes = (FormParser, MultiPartParser, FileUploadParser)
