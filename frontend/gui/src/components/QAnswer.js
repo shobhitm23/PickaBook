@@ -1,6 +1,12 @@
 import React from 'react';
 import { List, Icon, Comment, Avatar, Tooltip } from 'antd';
+import { Form, Input, Button, Select, Rate, Col, Row } from 'antd';
+import { connect } from "react-redux";
+
 import axios from 'axios';
+const FormItem = Form.Item;
+const { TextArea } = Input;
+
 
 class QAnswer extends React.Component {
 
@@ -12,7 +18,7 @@ class QAnswer extends React.Component {
             dislikes: 0,
             action: null
         };
-    }  
+    }
 
 
     componentDidMount = () => {
@@ -25,6 +31,7 @@ class QAnswer extends React.Component {
         .catch(error => console.log(error));
     }
 
+
     like = () => {
         this.setState({
           likes: 1,
@@ -32,7 +39,7 @@ class QAnswer extends React.Component {
           action: 'liked',
         });
       }
-    
+
       dislike = () => {
         this.setState({
           likes: 0,
@@ -41,7 +48,24 @@ class QAnswer extends React.Component {
         });
       }
 
+      clicked = () => {
+        this.setState({Comment: []});
+        var reply = prompt("Reply");
+        
+      }
+
     render() {
+
+      const formItemLayout = {
+          labelCol: {
+            xs: { span: 24 },
+            sm: { span: 2 },
+          },
+          wrapperCol: {
+            xs: { span: 24 },
+            sm: { span: 16 },
+          },
+      };
 
         const { likes, dislikes, action } = this.state;
         const actions = [
@@ -69,8 +93,12 @@ class QAnswer extends React.Component {
                 {dislikes}
               </span>
             </span>,
-            <span>Reply to</span>,
+            <span>
+              <button onClick={ this.clicked }> Reply to </button>
+            </span>,
         ];
+
+
 
         return (
             <div>
@@ -88,7 +116,7 @@ class QAnswer extends React.Component {
                         >
                             {
                                 item.answers.length > 0 ?
-                                
+
                                 <List
                                 className="comment-list"
                                 itemLayout="horizontal"
@@ -103,13 +131,46 @@ class QAnswer extends React.Component {
                                 )}
                                 />
                                 :
-                                <b syle={{marginLeft: 200}}>No replies</b>
+                                <b syle={{marginLeft: 200}}></b>
                             }
                             </Comment>
-                        
+
                     )}
                 />
-            </div>
+                </div>
+
+
+
+
+/*
+                <Form layout="horizontal" onSubmit={(event) => this.handleFormSubmit(
+                    event,
+                )}>
+                    <Row gutter={20} >
+                    <Col span={12}>
+                        <FormItem label="Title" {...formItemLayout}>
+                            <Input name="title" placeholder="Title" />
+                        </FormItem>
+                    </Col>
+
+                    <Row gutter={20} >
+                    <Col span={18} >
+                    <FormItem label="Review" >
+                        <TextArea name="review" placeholder="Review" autosize={{minRows: 2}} />
+                    </FormItem>
+                    </Col>
+                    </Row>
+
+
+                    <FormItem>
+                        <Button type="primary" htmlType="submit">
+                            Submit!
+                        </Button>
+                    </FormItem>
+                  </Row>
+                </Form>
+                </div>
+*/
         )
     }
 }

@@ -1,14 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import { Card, Row, Col, List, message, Avatar, Spin } from "antd";
+import { Card, Input, Row, Col, List, message, Avatar, Spin } from "antd";
 import reqwest from 'reqwest';
 import InfiniteScroll from 'react-infinite-scroller';
 import QAnswer from '../components/QAnswer';
 import ReviewForm from '../forms/ReviewForm';
+import QuestionForm from '../forms/QuestionForm';
 
 const gridStyle = {
     textAlign: 'center',
   };
+const {TextArea} = Input;
 
 class BookDetail extends React.Component {
 
@@ -27,13 +29,13 @@ class BookDetail extends React.Component {
             loading: false,
             hasMore: true
         };
-    }  
+    }
 
     componentDidMount = () => {
-        
+
         const bookID = this.props.match.params.bookID;
         this._isMounted=true;
-        
+
         axios.get(`http://127.0.0.1:8000/library/booklist/${bookID}`).then(res => {
           this.setState({
             // book: res.data
@@ -86,7 +88,7 @@ class BookDetail extends React.Component {
           return;
         }
     }
-    
+
 
     componentWillUnmount(){
         this._isMounted = false;
@@ -101,13 +103,13 @@ class BookDetail extends React.Component {
                             <Card bodyStyle={{
                                 padding: 0
                             }}>
-                                <img src={this.state.image_url} style={{    
+                                <img src={this.state.image_url} style={{
                                 }}
                                 width="100%" height="100%" >
                                 </img>
                             </Card>
                         </Col>
-                        
+
                         <Col span={16}>
                             <Card title={this.state.title} headStyle={{
                                 fontSize: 20,
@@ -115,15 +117,15 @@ class BookDetail extends React.Component {
                                 fontFamily: 'Georgia'
                             }}>
                                 <p>
-                                    <b><i>Author: </i></b> 
+                                    <b><i>Author: </i></b>
                                     <a href={'/authors/'+this.state.authID} > {this.state.author_name} </a>
                                 </p>
-                                
+
                                 <p>
-                                    <b><i>Date of publication: </i></b> 
+                                    <b><i>Date of publication: </i></b>
                                     {this.state.publication_date}
                                 </p>
-                                
+
                                 <p>
                                     <b><i>Genre: </i></b>
                                     {this.state.genre}
@@ -156,7 +158,7 @@ class BookDetail extends React.Component {
                     <Row gutter={20} type="flex" justify="center">
                         <Col span={22}>
                             <Card style={gridStyle} title="Reviews">
-                                
+
                                 <InfiniteScroll
                                     initialLoad={false}
                                     pageStart={0}
@@ -194,13 +196,14 @@ class BookDetail extends React.Component {
                         </Col>
                     </Row>
 
+
                     <Row gutter={20} type="flex">
                         <Col span={22}>
                             <Card title="Questions">
-
                                 <QAnswer bookID={this.props.match.params.bookID} />
+                                    <QuestionForm bookID={this.props.match.params.bookID} />
+                              </Card>
 
-                            </Card>
                         </Col>
                     </Row>
 
